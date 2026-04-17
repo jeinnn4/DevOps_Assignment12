@@ -34,8 +34,16 @@ services:
     networks:
       - elastic
     restart: always
-   
-
+    
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "8080:80"
+    networks:
+      - elastic
+    restart: always
+    
 volumes:
   prometheus_data:
   grafana_data:
