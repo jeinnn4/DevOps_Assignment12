@@ -43,6 +43,19 @@ services:
     networks:
       - elastic
     restart: always
+
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx-exporter
+    command:
+      - -nginx.scrape-uri=http://nginx:80
+    ports:
+      - "9113:9113"
+    networks:
+      - elastic
+    depends_on:
+      - nginx
+    restart: always
     
 volumes:
   prometheus_data:
